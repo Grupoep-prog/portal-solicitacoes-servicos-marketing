@@ -1,6 +1,12 @@
-<!-- 1. ESTILOS CSS -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página Fora do Ar — Grupo EP</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
   :root {
     --brand:        #327a2d;
     --brand-light:  #2356A0;
@@ -10,641 +16,172 @@
     --card:         #FFFFFF;
     --border:       #E2E6EE;
     --text-main:    #12213A;
-    --text-muted:   #327a2d;
-    --green:        #1D9A6C;
-    --red:          #D94040;
-    --radius:       12px;
-    --shadow:       0 2px 12px rgba(26,58,92,0.08);
+    --text-muted:   #5A6B82;
+    --radius:       16px;
+    --shadow:       0 8px 32px rgba(26,58,92,0.12);
   }
-  * { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-    font-family: 'Montserrat', sans-serif !important; 
-  }
-  body, input, select, textarea, button, h1, h2, h3, h4, h5, h6 {
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     font-family: 'Montserrat', sans-serif !important;
   }
+
   body {
     background: var(--surface);
     color: var(--text-main);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
+
   /* ── HEADER ── */
   header {
+    width: 100%;
     background: var(--brand);
     padding: 0 40px;
     height: 64px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 16px rgba(26,58,92,0.18);
   }
-  .logo {
-    display: flex;
-    align-items: center;
-  }
+
   .logo-img {
     height: 32px;
     width: auto;
     display: block;
   }
 
-  /* ── LAYOUT DE SERVIÇOS ── */
-  .service-wrap {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 36px 24px 60px;
+  /* ── CONTEÚDO PRINCIPAL ── */
+  .maintenance-wrap {
+    max-width: 600px;
+    width: 90%;
+    margin: 40px auto;
+    text-align: center;
   }
-  .service-hero {
-    margin-bottom: 28px;
-  }
-  .service-hero h1 {
-    font-weight: 700 !important;                      
-    font-size: 26px !important; 
-    color: var(--brand) !important;
-    margin-bottom: 8px !important;
-  }
-  .service-hero p { color: var(--text-muted); font-size: 15px; }
 
-  /* ── CARDS DE INFORMAÇÃO / POLÍTICA ── */
-  .info-box {
+  .maintenance-card {
     background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 5px solid var(--brand);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    padding: 20px 24px;
-    margin-bottom: 24px;
+    padding: 48px 32px;
     box-shadow: var(--shadow);
-    line-height: 1.6;
-    font-size: 14px;
-    color: var(--text-main);
   }
-  .info-box strong { color: var(--brand); }
-  .info-box ul { margin-top: 10px; margin-left: 20px; }
-  .info-box li { margin-bottom: 6px; }
 
-  .policy-box {
+  .icon-wrapper {
+    width: 80px;
+    height: 80px;
     background: var(--accent-soft);
-    border: 1.5px solid var(--accent);
-    border-radius: var(--radius);
-    padding: 18px 24px;
-    margin-bottom: 32px;
-    font-size: 13px;
-    line-height: 1.6;
-    color: #533f02;
-  }
-  .policy-box h4 {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: #856404;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
     display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  /* ── TABELA DE PRAZOS ── */
-  .table-card {
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    margin-bottom: 36px;
-  }
-  .table-card-header {
-    background: var(--brand);
-    color: #fff;
-    padding: 14px 20px;
-    font-size: 15px;
-    font-weight: 700;
-    text-align: center;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .deadline-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .deadline-table th {
-    background: var(--surface);
-    color: var(--text-muted);
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 12px 20px;
-    border-bottom: 1.5px solid var(--border);
-    text-align: left;
-  }
-  .deadline-table td {
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-  }
-  .deadline-table tr:last-child td { border-bottom: none; }
-  .deadline-table td.badge-cell {
-    font-weight: 700;
-    color: var(--brand);
-    white-space: nowrap;
-    text-align: right;
-  }
-
-  /* ── FORMULÁRIO ── */
-  .form-card {
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 32px;
-    box-shadow: var(--shadow);
-  }
-  .form-card h2 {
-    font-size: 20px;
-    color: var(--brand);
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--surface);
-  }
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  .full-width { grid-column: span 2; }
-
-  .field-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .field-group label {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-  }
-  .field-group input, .field-group select, .field-group textarea {
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font-size: 14px;
-    color: var(--text-main);
-    background: var(--surface);
-    transition: border 0.2s;
-    outline: none;
-  }
-  .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
-    border-color: var(--brand-light);
-  }
-  .field-group textarea { resize: vertical; }
-
-  .file-input-wrapper {
-    background: var(--surface);
-    border: 1.5px dashed var(--border);
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    cursor: pointer;
-    transition: border 0.2s;
-  }
-  .file-input-wrapper:hover {
-    border-color: var(--brand);
-  }
-  .file-input-wrapper input[type="file"] {
-    display: none;
-  }
-  .file-hint {
-    font-size: 12px;
-    color: #666;
-    margin-top: 4px;
-  }
-
-  .dynamic-field { display: none; }
-  .dynamic-field.active { display: flex; }
-
-  .btn-submit {
-    width: 100%;
-    padding: 15px;
-    background: var(--brand);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    margin-top: 10px;
-  }
-  .btn-submit:hover { background: var(--brand-light); transform: translateY(-1px); }
-  .btn-submit:disabled { background: var(--text-muted); cursor: not-allowed; transform: none; }
-
-  /* ── MODAL DE SUCESSO ── */
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(18,33,58,0.55);
-    display: none;
     align-items: center;
     justify-content: center;
-    z-index: 200;
-    padding: 24px;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal-box {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 40px 36px;
-    max-width: 440px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 16px 48px rgba(26,58,92,0.22);
-  }
-  .modal-icon {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    background: #E8F7F0;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 28px;
-  }
-  .modal-box h2 { font-size: 22px; color: var(--brand); margin-bottom: 10px; }
-  .modal-box p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
-  .btn-modal-close {
-    padding: 12px 32px;
-    background: var(--brand);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
+    font-size: 36px;
+    margin: 0 auto 24px;
   }
 
-  /* Toast */
-  .toast {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    background: var(--text-main);
-    color: #fff;
-    padding: 14px 22px;
+  h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--brand);
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .info-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--brand);
     border-radius: 10px;
+    padding: 16px;
     font-size: 14px;
-    font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    z-index: 300;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: all 0.3s;
-    pointer-events: none;
+    color: var(--text-main);
+    text-align: left;
+    margin-bottom: 28px;
+    line-height: 1.5;
   }
-  .toast.show { opacity: 1; transform: translateY(0); }
 
-  @media (max-width: 680px) {
-    header { padding: 0 16px; }
-    .service-wrap { padding: 20px 16px 48px; }
-    .form-grid { grid-template-columns: 1fr; }
-    .full-width { grid-column: span 1; }
-    .form-card { padding: 20px 16px; }
+  .btn-email {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 24px;
+    background: var(--brand);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 12px rgba(50,122,45,0.25);
+  }
+
+  .btn-email:hover {
+    background: var(--brand-light);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  @media (max-width: 480px) {
+    header { padding: 0 20px; }
+    .maintenance-card { padding: 32px 20px; }
+    h1 { font-size: 20px; }
+    p { font-size: 14px; }
   }
 </style>
+</head>
+<body>
 
-<!-- 2. CONTEÚDO HTML DA PÁGINA -->
 <header>
   <div class="logo">
     <img src="https://i.postimg.cc/4yF4SPwh/Logo-PNG.png" alt="Grupo EP" class="logo-img">
   </div>
 </header>
 
-<div class="service-wrap">
-  <div class="service-hero">
-    <h1>Solicitação de Serviços de Marketing</h1>
-    <p>Preencha os detalhes da sua demanda para planejarmos a entrega com eficiência.</p>
-  </div>
-
-  <div class="info-box">
-    Este formulário foi desenvolvido exclusivamente para solicitações internas entre setores da EP, com o objetivo de garantir que o time de Marketing possa planejar prazos e entregas de maneira eficiente e dentro dos padrões estabelecidos pela marca. As solicitações podem incluir:
-    <ul>
-      <li><strong>Materiais visuais e gráficos:</strong> criação de banners, folhetos, catálogos, apresentações, artes para redes sociais e qualquer outro material promocional digital ou impresso.</li>
-      <li><strong>Comunicações internas e externas:</strong> criação de arte e conteúdo para comunicados internos (e-mails, avisos, murais) e externos (postagens, boletins informativos, newsletters, e-mail marketing).</li>
-      <li><strong>Revisão e otimização de textos:</strong> análise de conteúdo textual para garantir clareza, consistência e adequação ao tom de voz da EP em comunicações oficiais.</li>
-      <li><strong>Brindes e materiais promocionais:</strong> solicitação de criação e liberação de brindes promocionais ou qualquer material de divulgação física.</li>
-      <li><strong>Campanhas de e-mail marketing:</strong> criação, design e revisão de campanhas de e-mail marketing para comunicações internas e externas.</li>
-      <li><strong>Inserção de materiais e atualizações na intranet:</strong> envio de conteúdo e materiais a serem adicionados ou atualizados na plataforma interna da empresa.</li>
-    </ul>
-    <br>
-    Caso tenha dúvidas ao preencher, você pode entrar em contato com a equipe pelo e-mail: <strong>marketing@grupoep.com.br</strong>.
-  </div>
-
-  <div class="policy-box">
-    <h4>📌 Regulamento Interno — PR1001 rev16</h4>
-    De acordo com o regulamento interno e políticas EP, todo material que contenha a imagem ou identidade visual da EP, como banners, folhetos, catálogos e outros materiais impressos ou digitais, deve ser submetido à aprovação prévia do departamento de Marketing antes de sua produção, utilização e/ou divulgação.<br>
-    Isso garante que todas as comunicações externas e internas estejam alinhadas com os padrões visuais e de comunicação da marca.
-  </div>
-
-  <div class="table-card">
-    <div class="table-card-header">Prazo Criação Marketing</div>
-    <table class="deadline-table">
-      <thead>
-        <tr>
-          <th>Tipo</th>
-          <th style="text-align: right;">Prazo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Materiais visuais e gráficos:</td>
-          <td class="badge-cell">20 DIAS ÚTEIS</td>
-        </tr>
-        <tr>
-          <td>Comunicações internas e externas:</td>
-          <td class="badge-cell">12 DIAS ÚTEIS</td>
-        </tr>
-        <tr>
-          <td>Assinaturas de e-mail:</td>
-          <td class="badge-cell">2 DIAS ÚTEIS</td>
-        </tr>
-        <tr>
-          <td>Revisão e otimização de textos:</td>
-          <td class="badge-cell">5 DIAS ÚTEIS</td>
-        </tr>
-        <tr>
-          <td>Brindes e materiais promocionais:</td>
-          <td class="badge-cell">5 DIAS ÚTEIS</td>
-        </tr>
-        <tr>
-          <td>Campanhas de e-mail marketing:</td>
-          <td class="badge-cell">12 DIAS ÚTEIS</td>
-        </tr>
-        <tr>
-          <td>Inserção de materiais e atualizações na intranet</td>
-          <td class="badge-cell">5 DIAS ÚTEIS</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="form-card">
-    <h2>Dados da Solicitação</h2>
+<main class="maintenance-wrap">
+  <div class="maintenance-card">
+    <div class="icon-wrapper">🛠️</div>
+    <h1>Página Fora do Ar</h1>
+    <p>Este sistema está temporariamente indisponível para atualização e manutenção preventiva.</p>
     
-    <div class="form-grid">
-      
-      <div class="field-group">
-        <label>Seu Nome *</label>
-        <input type="text" id="srv-nome" placeholder="Nome completo">
-      </div>
-
-      <div class="field-group">
-        <label>Setor Atendido *</label>
-        <input type="text" id="srv-setor" placeholder="Ex: RH, Comercial, Suprimentos...">
-      </div>
-
-      <div class="field-group full-width">
-        <label>Esta comunicação será: *</label>
-        <select id="srv-comunicacao">
-          <option value="">Selecione o escopo da comunicação</option>
-          <option value="Interna">Interna: Comunicação apenas para colaboradores</option>
-          <option value="Externa">Externa: Comunicação para clientes, mercado e fornecedores</option>
-        </select>
-      </div>
-
-      <div class="field-group full-width">
-        <label>Tipo de solicitação: *</label>
-        <select id="srv-tipo" onchange="toggleOutroTipo(this.value)">
-          <option value="">Selecione o tipo de serviço</option>
-          <option value="Materiais visuais e gráficos">Materiais visuais e gráficos (banners, folhetos, catálogos, apresentações, artes redes sociais)</option>
-          <option value="Comunicações internas e externas">Comunicações internas e externas (arte/conteúdo para e-mails, avisos, murais, boletins)</option>
-          <option value="Revisão e otimização de textos">Revisão e otimização de textos (análise de clareza, tom de voz oficial)</option>
-          <option value="Brindes e materiais promocionais">Brindes e materiais promocionais (criação e liberação de divulgação física)</option>
-          <option value="Campanhas de e-mail marketing">Campanhas de e-mail marketing (criação, design e revisão)</option>
-          <option value="Inserção de materiais e atualizações na intranet">Inserção de materiais e atualizações na intranet</option>
-          <option value="Outro">Outro</option>
-        </select>
-      </div>
-
-      <div class="field-group full-width dynamic-field" id="group-outro-tipo">
-        <label>Especifique o outro tipo: *</label>
-        <input type="text" id="srv-tipo-outro" placeholder="Descreva sucintamente o tipo de serviço">
-      </div>
-
-      <div class="field-group full-width">
-        <label>Descreva de forma detalhada a sua demanda/necessidade: *</label>
-        <textarea id="srv-descricao" rows="4" placeholder="Informe claramente todos os detalhes importantes da sua solicitação..."></textarea>
-      </div>
-
-      <!-- Material Complementar (Textos e Links) -->
-      <div class="field-group full-width">
-        <label>Material complementar de apoio - Links/Textos (Opcional)</label>
-        <textarea id="srv-apoio" rows="2" placeholder="Insira links de drive, referências ou textos base de apoio para criação..."></textarea>
-      </div>
-
-      <!-- Anexo de Arquivos -->
-      <div class="field-group full-width">
-        <label>Anexar Arquivos de Apoio (Opcional)</label>
-        <div class="file-input-wrapper" onclick="document.getElementById('srv-arquivos').click()">
-          <span id="file-label">📁 Clique aqui para selecionar arquivos de apoio</span>
-          <input type="file" id="srv-arquivos" multiple onchange="updateFileLabel(this)">
-          <div class="file-hint">Formatos aceitos: Imagens, PDFs, Documentos, etc. (Recomendado até 5MB total)</div>
-        </div>
-      </div>
-
-      <div class="field-group full-width">
-        <label>Qual o grau de urgência da sua demanda? *</label>
-        <select id="srv-urgencia">
-          <option value="">Selecione o grau de urgência</option>
-          <option value="1 - Baixa">1 - Baixa (pode esperar)</option>
-          <option value="2 - Média">2 - Média (importante, mas não urgente)</option>
-          <option value="3 - Alta">3 - Alta (necessário em curto prazo)</option>
-          <option value="4 - Crítica">4 - Crítica (precisa ser atendida imediatamente)</option>
-        </select>
-      </div>
-
-      <div class="field-group full-width">
-        <label>O prazo está dentro do total de dias conforme a tabela? *</label>
-        <select id="srv-no-prazo" onchange="toggleOutroPrazo(this.value)">
-          <option value="">Selecione uma opção</option>
-          <option value="Sim">Sim</option>
-          <option value="Outro">Não (Outro)</option>
-        </select>
-      </div>
-
-      <div class="field-group full-width dynamic-field" id="group-outro-prazo">
-        <label>Justificativa / Observações sobre o prazo: *</label>
-        <textarea id="srv-prazo-outro" rows="3" placeholder="Se não tiver no prazo, descreva aqui o motivo..."></textarea>
-      </div>
-
-      <div class="field-group full-width">
-        <label>Qual a data limite para recebimento deste material? *</label>
-        <input type="date" id="srv-data-limite">
-      </div>
-
+    <div class="info-box">
+      Caso precise realizar uma solicitação urgente ou tirar dúvidas, entre em contato diretamente com a equipe responsável pelo e-mail abaixo.
     </div>
 
-    <button class="btn-submit" id="btn-submit" onclick="submitServiceRequest()">Enviar Solicitação de Serviço →</button>
+    <a href="mailto:marketing@grupoep.com.br?subject=Solicita%C3%A7%C3%A3o%20Urgente%20%E2%80%94%20Sistema%20Fora%20do%20Ar" class="btn-email">
+      ✉️ Contatar marketing@grupoep.com.br
+    </a>
   </div>
-</div>
+</main>
 
-<div class="modal-overlay" id="success-modal">
-  <div class="modal-box">
-    <div class="modal-icon">✅</div>
-    <h2>Solicitação Enviada!</h2>
-    <p>O time de Marketing recebeu sua demanda de serviço. O planejamento do material será iniciado respeitando os prazos informados.</p>
-    <button class="btn-modal-close" onclick="closeModal()">Entendido</button>
-  </div>
-</div>
+<footer>
+  Grupo EP &copy; Todos os direitos reservados.
+</footer>
 
-<div class="toast" id="toast"></div>
-
-<!-- 3. LÓGICA JAVASCRIPT -->
-<script>
-  const GOOGLE_SCRIPT_SERVICES_URL = 'https://script.google.com/macros/s/AKfycbwxYXXP_rlI6UvnqrhotaiNq563sFw_ExqxtI0Wrp_dmjW2eQd9LULa4pHuzsGsQiPEKQ/exec';
-
-  function toggleOutroTipo(val) {
-    const el = document.getElementById('group-outro-tipo');
-    if (val === 'Outro') {
-      el.classList.add('active');
-    } else {
-      el.classList.remove('active');
-    }
-  }
-
-  function toggleOutroPrazo(val) {
-    const el = document.getElementById('group-outro-prazo');
-    if (val === 'Outro') {
-      el.classList.add('active');
-    } else {
-      el.classList.remove('active');
-    }
-  }
-
-  function updateFileLabel(input) {
-    const label = document.getElementById('file-label');
-    if (input.files.length > 0) {
-      label.textContent = `📎 ${input.files.length} arquivo(s) selecionado(s)`;
-    } else {
-      label.textContent = '📁 Clique aqui para selecionar arquivos de apoio';
-    }
-  }
-
-  function readFileAsBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const base64Data = reader.result.split(',')[1];
-        resolve({
-          fileName: file.name,
-          mimeType: file.type,
-          data: base64Data
-        });
-      };
-      reader.onerror = error => reject(error);
-      reader.readAsDataURL(file);
-    });
-  }
-
-  async function submitServiceRequest() {
-    const nome        = document.getElementById('srv-nome').value.trim();
-    const setor       = document.getElementById('srv-setor').value.trim();
-    const comunicacao = document.getElementById('srv-comunicacao').value;
-    let tipo          = document.getElementById('srv-tipo').value;
-    const tipoOutro   = document.getElementById('srv-tipo-outro').value.trim();
-    const descricao   = document.getElementById('srv-descricao').value.trim();
-    const apoio       = document.getElementById('srv-apoio').value.trim();
-    const urgencia    = document.getElementById('srv-urgencia').value;
-    let noPrazo       = document.getElementById('srv-no-prazo').value;
-    const prazoOutro  = document.getElementById('srv-prazo-outro').value.trim();
-    const dataLimite  = document.getElementById('srv-data-limite').value;
-    const fileInput   = document.getElementById('srv-arquivos');
-
-    if (tipo === 'Outro') tipo = 'Outro: ' + tipoOutro;
-    if (noPrazo === 'Outro') noPrazo = 'Não (Outro)';
-
-    // Validações
-    if (!nome) { showToast('⚠️ Preencha o seu nome.'); return; }
-    if (!setor) { showToast('⚠️️ Preencha o setor atendido.'); return; }
-    if (!comunicacao) { showToast('⚠️️ Selecione o escopo da comunicação.'); return; }
-    if (!document.getElementById('srv-tipo').value) { showToast('⚠️ Selecione o tipo de solicitação.'); return; }
-    if (document.getElementById('srv-tipo').value === 'Outro' && !tipoOutro) { showToast('⚠️ Especifique o outro tipo de solicitação.'); return; }
-    if (!descricao) { showToast('⚠️ Descreva os detalhes da demanda.'); return; }
-    if (!urgencia) { showToast('⚠️ Selecione o grau de urgência.'); return; }
-    if (!document.getElementById('srv-no-prazo').value) { showToast('⚠️ Informe se está dentro do prazo da tabela.'); return; }
-    if (document.getElementById('srv-no-prazo').value === 'Outro' && !prazoOutro) { showToast('⚠️ Preencha a justificativa sobre o prazo.'); return; }
-    if (!dataLimite) { showToast('⚠️ Preencha a data limite desejada.'); return; }
-
-    const btn = document.getElementById('btn-submit');
-    btn.disabled = true;
-    btn.textContent = 'Processando arquivos...';
-
-    try {
-      let filesData = [];
-      if (fileInput.files.length > 0) {
-        const filePromises = Array.from(fileInput.files).map(file => readFileAsBase64(file));
-        filesData = await Promise.all(filePromises);
-      }
-
-      btn.textContent = 'Enviando solicitação...';
-
-      const formData = new URLSearchParams();
-      formData.append('nome', nome);
-      formData.append('setor', setor);
-      formData.append('comunicacao', comunicacao);
-      formData.append('tipo', tipo);
-      formData.append('descricao', descricao);
-      formData.append('apoio', apoio);
-      formData.append('urgencia', urgencia);
-      formData.append('noPrazo', noPrazo);
-      formData.append('prazoOutro', prazoOutro);
-      formData.append('dataLimite', dataLimite);
-      formData.append('files', JSON.stringify(filesData));
-
-      await fetch(GOOGLE_SCRIPT_SERVICES_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formData.toString()
-      });
-
-      document.getElementById('success-modal').classList.add('open');
-    } catch (error) {
-      console.error('Erro ao enviar solicitação:', error);
-      showToast('❌ Erro ao enviar solicitação. Tente novamente.');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Enviar Solicitação de Serviço →';
-    }
-  }
-
-  function closeModal() {
-    document.getElementById('success-modal').classList.remove('open');
-    
-    document.getElementById('srv-nome').value = '';
-    document.getElementById('srv-setor').value = '';
-    document.getElementById('srv-comunicacao').value = '';
-    document.getElementById('srv-tipo').value = '';
-    document.getElementById('srv-tipo-outro').value = '';
-    document.getElementById('srv-descricao').value = '';
-    document.getElementById('srv-apoio').value = '';
-    document.getElementById('srv-urgencia').value = '';
-    document.getElementById('srv-no-prazo').value = '';
-    document.getElementById('srv-prazo-outro').value = '';
-    document.getElementById('srv-data-limite').value = '';
-    document.getElementById('srv-arquivos').value = '';
-    updateFileLabel(document.getElementById('srv-arquivos'));
-    
-    toggleOutroTipo('');
-    toggleOutroPrazo('');
-  }
-
-  let toastTimer;
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
-  }
-</script>
+</body>
+</html>
