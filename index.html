@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solicitação de Serviços de Marketing — Grupo EP</title>
+<!-- 1. ESTILOS CSS -->
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
   :root {
@@ -208,6 +203,27 @@
   }
   .field-group textarea { resize: vertical; }
 
+  .file-input-wrapper {
+    background: var(--surface);
+    border: 1.5px dashed var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border 0.2s;
+  }
+  .file-input-wrapper:hover {
+    border-color: var(--brand);
+  }
+  .file-input-wrapper input[type="file"] {
+    display: none;
+  }
+  .file-hint {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+  }
+
   .dynamic-field { display: none; }
   .dynamic-field.active { display: flex; }
 
@@ -296,9 +312,8 @@
     .form-card { padding: 20px 16px; }
   }
 </style>
-</head>
-<body>
 
+<!-- 2. CONTEÚDO HTML DA PÁGINA -->
 <header>
   <div class="logo">
     <img src="https://i.postimg.cc/4yF4SPwh/Logo-PNG.png" alt="Grupo EP" class="logo-img">
@@ -311,7 +326,6 @@
     <p>Preencha os detalhes da sua demanda para planejarmos a entrega com eficiência.</p>
   </div>
 
-  <!-- AVISO CABEÇALHO -->
   <div class="info-box">
     Este formulário foi desenvolvido exclusivamente para solicitações internas entre setores da EP, com o objetivo de garantir que o time de Marketing possa planejar prazos e entregas de maneira eficiente e dentro dos padrões estabelecidos pela marca. As solicitações podem incluir:
     <ul>
@@ -326,14 +340,12 @@
     Caso tenha dúvidas ao preencher, você pode entrar em contato com a equipe pelo e-mail: <strong>marketing@grupoep.com.br</strong>.
   </div>
 
-  <!-- POLÍTICA INTERNA -->
   <div class="policy-box">
     <h4>📌 Regulamento Interno — PR1001 rev16</h4>
     De acordo com o regulamento interno e políticas EP, todo material que contenha a imagem ou identidade visual da EP, como banners, folhetos, catálogos e outros materiais impressos ou digitais, deve ser submetido à aprovação prévia do departamento de Marketing antes de sua produção, utilização e/ou divulgação.<br>
     Isso garante que todas as comunicações externas e internas estejam alinhadas com os padrões visuais e de comunicação da marca.
   </div>
 
-  <!-- TABELA DE PRAZOS -->
   <div class="table-card">
     <div class="table-card-header">Prazo Criação Marketing</div>
     <table class="deadline-table">
@@ -376,25 +388,21 @@
     </table>
   </div>
 
-  <!-- FORMULÁRIO DE SOLICITAÇÃO -->
   <div class="form-card">
     <h2>Dados da Solicitação</h2>
     
     <div class="form-grid">
       
-      <!-- Nome -->
       <div class="field-group">
         <label>Seu Nome *</label>
         <input type="text" id="srv-nome" placeholder="Nome completo">
       </div>
 
-      <!-- Setor -->
       <div class="field-group">
         <label>Setor Atendido *</label>
         <input type="text" id="srv-setor" placeholder="Ex: RH, Comercial, Suprimentos...">
       </div>
 
-      <!-- Comunicação Interna/Externa -->
       <div class="field-group full-width">
         <label>Esta comunicação será: *</label>
         <select id="srv-comunicacao">
@@ -404,7 +412,6 @@
         </select>
       </div>
 
-      <!-- Tipo de Solicitação -->
       <div class="field-group full-width">
         <label>Tipo de solicitação: *</label>
         <select id="srv-tipo" onchange="toggleOutroTipo(this.value)">
@@ -419,25 +426,32 @@
         </select>
       </div>
 
-      <!-- Campo Dinâmico: Outro Tipo -->
       <div class="field-group full-width dynamic-field" id="group-outro-tipo">
         <label>Especifique o outro tipo: *</label>
         <input type="text" id="srv-tipo-outro" placeholder="Descreva sucintamente o tipo de serviço">
       </div>
 
-      <!-- Descrição Detalhada -->
       <div class="field-group full-width">
         <label>Descreva de forma detalhada a sua demanda/necessidade: *</label>
-        <textarea id="srv-descricao" rows="4" placeholder="Informe claramente todos os detalhes importantes da sua solicitação, como o tipo de material necessário, público-alvo, objetivos, conteúdo a ser incluído, formato desejado..."></textarea>
+        <textarea id="srv-descricao" rows="4" placeholder="Informe claramente todos os detalhes importantes da sua solicitação..."></textarea>
       </div>
 
-      <!-- Material Complementar -->
+      <!-- Material Complementar (Textos e Links) -->
       <div class="field-group full-width">
-        <label>Material complementar de apoio (Opcional)</label>
+        <label>Material complementar de apoio - Links/Textos (Opcional)</label>
         <textarea id="srv-apoio" rows="2" placeholder="Insira links de drive, referências ou textos base de apoio para criação..."></textarea>
       </div>
 
-      <!-- Urgência -->
+      <!-- Anexo de Arquivos -->
+      <div class="field-group full-width">
+        <label>Anexar Arquivos de Apoio (Opcional)</label>
+        <div class="file-input-wrapper" onclick="document.getElementById('srv-arquivos').click()">
+          <span id="file-label">📁 Clique aqui para selecionar arquivos de apoio</span>
+          <input type="file" id="srv-arquivos" multiple onchange="updateFileLabel(this)">
+          <div class="file-hint">Formatos aceitos: Imagens, PDFs, Documentos, etc. (Recomendado até 5MB total)</div>
+        </div>
+      </div>
+
       <div class="field-group full-width">
         <label>Qual o grau de urgência da sua demanda? *</label>
         <select id="srv-urgencia">
@@ -449,7 +463,6 @@
         </select>
       </div>
 
-      <!-- Dentro do Prazo da Tabela -->
       <div class="field-group full-width">
         <label>O prazo está dentro do total de dias conforme a tabela? *</label>
         <select id="srv-no-prazo" onchange="toggleOutroPrazo(this.value)">
@@ -459,13 +472,11 @@
         </select>
       </div>
 
-      <!-- Campo Dinâmico: Justificativa de Prazo Fora da Tabela -->
       <div class="field-group full-width dynamic-field" id="group-outro-prazo">
         <label>Justificativa / Observações sobre o prazo: *</label>
-        <textarea id="srv-prazo-outro" rows="3" placeholder="Se não tiver no prazo, entre em contato com marketing@grupoep.com.br. Descreva aqui o motivo ou detalhes acordados."></textarea>
+        <textarea id="srv-prazo-outro" rows="3" placeholder="Se não tiver no prazo, descreva aqui o motivo..."></textarea>
       </div>
 
-      <!-- Data Limite -->
       <div class="field-group full-width">
         <label>Qual a data limite para recebimento deste material? *</label>
         <input type="date" id="srv-data-limite">
@@ -477,7 +488,6 @@
   </div>
 </div>
 
-<!-- MODAL SUCESSO -->
 <div class="modal-overlay" id="success-modal">
   <div class="modal-box">
     <div class="modal-icon">✅</div>
@@ -489,6 +499,7 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- 3. LÓGICA JAVASCRIPT -->
 <script>
   const GOOGLE_SCRIPT_SERVICES_URL = 'https://script.google.com/macros/s/AKfycbwxYXXP_rlI6UvnqrhotaiNq563sFw_ExqxtI0Wrp_dmjW2eQd9LULa4pHuzsGsQiPEKQ/exec';
 
@@ -510,6 +521,31 @@
     }
   }
 
+  function updateFileLabel(input) {
+    const label = document.getElementById('file-label');
+    if (input.files.length > 0) {
+      label.textContent = `📎 ${input.files.length} arquivo(s) selecionado(s)`;
+    } else {
+      label.textContent = '📁 Clique aqui para selecionar arquivos de apoio';
+    }
+  }
+
+  function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64Data = reader.result.split(',')[1];
+        resolve({
+          fileName: file.name,
+          mimeType: file.type,
+          data: base64Data
+        });
+      };
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
+  }
+
   async function submitServiceRequest() {
     const nome        = document.getElementById('srv-nome').value.trim();
     const setor       = document.getElementById('srv-setor').value.trim();
@@ -522,15 +558,15 @@
     let noPrazo       = document.getElementById('srv-no-prazo').value;
     const prazoOutro  = document.getElementById('srv-prazo-outro').value.trim();
     const dataLimite  = document.getElementById('srv-data-limite').value;
+    const fileInput   = document.getElementById('srv-arquivos');
 
-    // Trata seleções customizadas ("Outro")
     if (tipo === 'Outro') tipo = 'Outro: ' + tipoOutro;
     if (noPrazo === 'Outro') noPrazo = 'Não (Outro)';
 
-    // Validações dos campos obrigatórios
+    // Validações
     if (!nome) { showToast('⚠️ Preencha o seu nome.'); return; }
-    if (!setor) { showToast('⚠️ Preencha o setor atendido.'); return; }
-    if (!comunicacao) { showToast('⚠️ Selecione o escopo da comunicação.'); return; }
+    if (!setor) { showToast('⚠️️ Preencha o setor atendido.'); return; }
+    if (!comunicacao) { showToast('⚠️️ Selecione o escopo da comunicação.'); return; }
     if (!document.getElementById('srv-tipo').value) { showToast('⚠️ Selecione o tipo de solicitação.'); return; }
     if (document.getElementById('srv-tipo').value === 'Outro' && !tipoOutro) { showToast('⚠️ Especifique o outro tipo de solicitação.'); return; }
     if (!descricao) { showToast('⚠️ Descreva os detalhes da demanda.'); return; }
@@ -541,9 +577,17 @@
 
     const btn = document.getElementById('btn-submit');
     btn.disabled = true;
-    btn.textContent = 'Enviando solicitação...';
+    btn.textContent = 'Processando arquivos...';
 
     try {
+      let filesData = [];
+      if (fileInput.files.length > 0) {
+        const filePromises = Array.from(fileInput.files).map(file => readFileAsBase64(file));
+        filesData = await Promise.all(filePromises);
+      }
+
+      btn.textContent = 'Enviando solicitação...';
+
       const formData = new URLSearchParams();
       formData.append('nome', nome);
       formData.append('setor', setor);
@@ -555,6 +599,7 @@
       formData.append('noPrazo', noPrazo);
       formData.append('prazoOutro', prazoOutro);
       formData.append('dataLimite', dataLimite);
+      formData.append('files', JSON.stringify(filesData));
 
       await fetch(GOOGLE_SCRIPT_SERVICES_URL, {
         method: 'POST',
@@ -563,10 +608,9 @@
         body: formData.toString()
       });
 
-      // Exibir modal de sucesso
       document.getElementById('success-modal').classList.add('open');
     } catch (error) {
-      console.error('Erro ao enviar para o Google Sheets:', error);
+      console.error('Erro ao enviar solicitação:', error);
       showToast('❌ Erro ao enviar solicitação. Tente novamente.');
     } finally {
       btn.disabled = false;
@@ -577,7 +621,6 @@
   function closeModal() {
     document.getElementById('success-modal').classList.remove('open');
     
-    // Limpeza dos campos
     document.getElementById('srv-nome').value = '';
     document.getElementById('srv-setor').value = '';
     document.getElementById('srv-comunicacao').value = '';
@@ -589,6 +632,8 @@
     document.getElementById('srv-no-prazo').value = '';
     document.getElementById('srv-prazo-outro').value = '';
     document.getElementById('srv-data-limite').value = '';
+    document.getElementById('srv-arquivos').value = '';
+    updateFileLabel(document.getElementById('srv-arquivos'));
     
     toggleOutroTipo('');
     toggleOutroPrazo('');
@@ -603,5 +648,3 @@
     toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
   }
 </script>
-</body>
-</html>
