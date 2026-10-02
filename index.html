@@ -448,7 +448,7 @@
         <div class="file-input-wrapper" onclick="document.getElementById('srv-arquivos').click()">
           <span id="file-label">📁 Clique aqui para selecionar arquivos de apoio</span>
           <input type="file" id="srv-arquivos" multiple onchange="updateFileLabel(this)">
-          <div class="file-hint">Formatos aceitos: Imagens, PDFs, Documentos, etc. (Máx: 10MB por arquivo)</div>
+          <div class="file-hint">Formatos aceitos: Imagens, PDFs, Documentos, etc.</div>
         </div>
       </div>
 
@@ -566,7 +566,7 @@
     if (!nome) { showToast('⚠️ Preencha o seu nome.'); return; }
     if (!setor) { showToast('⚠️ Preencha o setor atendido.'); return; }
     if (!comunicacao) { showToast('⚠️ Selecione o escopo da comunicação.'); return; }
-    if (!document.getElementById('srv-tipo').value) { showToast('⚠️️ Selecione o tipo de solicitação.'); return; }
+    if (!document.getElementById('srv-tipo').value) { showToast('⚠️ Selecione o tipo de solicitação.'); return; }
     if (document.getElementById('srv-tipo').value === 'Outro' && !tipoOutro) { showToast('⚠️ Especifique o outro tipo de solicitação.'); return; }
     if (!descricao) { showToast('⚠️ Descreva os detalhes da demanda.'); return; }
     if (!urgencia) { showToast('⚠️ Selecione o grau de urgência.'); return; }
@@ -579,29 +579,32 @@
     btn.textContent = 'Processando arquivos...';
 
     try {
-      const filePromises = Array.from(fileInput.files).map(file => readFileAsBase64(file));
-      const filesData = await Promise.all(filePromises);
+      let filesData = [];
+      if (fileInput.files.length > 0) {
+        const filePromises = Array.from(fileInput.files).map(file => readFileAsBase64(file));
+        filesData = await Promise.all(filePromises);
+      }
 
       btn.textContent = 'Enviando solicitação...';
 
       const payload = {
-        nome,
-        setor,
-        comunicacao,
-        tipo,
-        descricao,
-        apoio,
-        urgencia,
-        noPrazo,
-        prazoOutro,
-        dataLimite,
+        nome: nome,
+        setor: setor,
+        comunicacao: comunicacao,
+        tipo: tipo,
+        descricao: descricao,
+        apoio: apoio,
+        urgencia: urgencia,
+        noPrazo: noPrazo,
+        prazoOutro: prazoOutro,
+        dataLimite: dataLimite,
         files: filesData
       };
 
       await fetch(GOOGLE_SCRIPT_SERVICES_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       });
 
